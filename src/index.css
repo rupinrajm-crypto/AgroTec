@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0a1410;
+  color: #e6f4ee;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1c3a30; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #244a3d; }
+
+/* Utility layers */
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-agro-border bg-agro-panel/80 backdrop-blur-md shadow-panel;
+  }
+  .panel-inset {
+    @apply rounded-xl border border-agro-border/60 bg-agro-bg/60;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium;
+  }
+  .stat-num {
+    @apply font-display text-2xl font-semibold tracking-tight;
+  }
+  .label {
+    @apply text-[11px] uppercase tracking-[0.14em] text-agro-muted font-medium;
+  }
+  .grid-cell {
+    @apply rounded-lg border border-agro-border/50 bg-agro-panel2/60;
+  }
+}
+
+/* Isometric helpers */
+.iso-stage {
+  transform: rotateX(55deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+}
+.iso-tile {
+  transform: rotateZ(45deg) rotateX(-55deg) skew(-15deg, 15deg);
+}
+
+/* Holographic gradient text */
+.holo-text {
+  background: linear-gradient(90deg, #3ddc97, #5fd9ff, #3ddc97);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShift 6s linear infinite;
+}
+@keyframes holoShift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scanline overlay for holographic feel */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(95,217,255,0.03) 0px,
+    rgba(95,217,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Animated grid background */
+.agro-grid-bg {
+  background-image:
+    linear-gradient(rgba(61,220,151,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,220,151,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
